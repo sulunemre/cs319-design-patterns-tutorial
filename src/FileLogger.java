@@ -3,10 +3,17 @@ import java.io.FileOutputStream;
 import java.io.PrintWriter;
 
 public class FileLogger implements Logger {
-    private String filePath;
+    private static String filePath = "log.txt";
+    private static FileLogger instance;
 
-    public FileLogger(String filePath) {
-        this.filePath = filePath;
+    private FileLogger() {
+    }
+
+    public static FileLogger getInstance() {
+        if (instance == null) {
+            instance = new FileLogger();
+        }
+        return instance;
     }
 
     @Override
