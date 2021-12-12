@@ -1,9 +1,8 @@
 public class Main {
     public static void main(String[] args) {
-        Logger logger = new FileLogger("log.txt");
-        logger.log("Hello world!");
+        Logger rawLogger = new ConsoleLogger();
 
-        Logger logger2 = new ConsoleLogger();
-        logger2.log("Hello world!");
+        Logger decoratedLogger = new EncryptionLogger(new TimestampLogger(rawLogger));
+        decoratedLogger.log("Hello World!");
     }
 }
